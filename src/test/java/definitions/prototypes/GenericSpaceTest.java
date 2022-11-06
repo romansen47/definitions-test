@@ -49,12 +49,12 @@ public abstract class GenericSpaceTest extends GenericTest {
 	/**
 	 * path to prepared values of input function
 	 */
-	protected String path1 = "src/main/resources/test.csv";
+	protected String path1 = "src/test/resources/test.csv";
 
 	/**
 	 * path to prepared values of input function
 	 */
-	protected String path2 = "src/main/resources/test2.csv";
+	protected String path2 = "src/test/resources/test2.csv";
 
 	/**
 	 * the values
