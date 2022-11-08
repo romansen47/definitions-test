@@ -158,10 +158,6 @@ public abstract class GenericSpaceTest extends GenericTest {
 
 		org.apache.logging.log4j.Logger logger = getLogger();
 
-		EuclideanSpace whatTheFuck = getSpace();
-		if (whatTheFuck == null) {
-			logger.info("comm on!");
-		}
 		Function fProjection = f.getProjection(getSpace());
 
 		f.plotCompare(-Math.PI, Math.PI, fProjection);

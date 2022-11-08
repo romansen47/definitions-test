@@ -49,7 +49,7 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return realLine;
 			}
 		};
 
@@ -57,7 +57,7 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return realLine;
 			}
 		};
 
