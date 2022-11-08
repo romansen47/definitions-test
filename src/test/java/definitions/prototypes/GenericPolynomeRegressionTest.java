@@ -69,9 +69,9 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 		final Function ans = exp.getProjection(space);
 		exp.plotCompare(left, right, ans);
 		double distance = space.distance(ans, exp).getRepresentant();
-		logger.info("distance to exp is {}", distance);
+		logger.debug("distance to exp is {}", distance);
 		double norm = space.norm(ans).getDoubleValue();
-		logger.info("relative distance to exp is {}", distance / norm);
+		logger.debug("relative distance to exp is {}", distance / norm);
 		Assert.assertTrue(distance / norm < getEps());
 	}
 
@@ -80,9 +80,9 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 		final Function ans = sin.getProjection(space);
 		ans.plotCompare(left, right, sin);
 		double distance = space.distance(ans, sin).getRepresentant();
-		logger.info("distance to sin is {}", distance);
+		logger.debug("distance to sin is {}", distance);
 		double norm = space.norm(ans).getDoubleValue();
-		logger.info("relative distance to sin is {}", distance / norm);
+		logger.debug("relative distance to sin is {}", distance / norm);
 		Assert.assertTrue(distance / norm < getEps());
 	}
 

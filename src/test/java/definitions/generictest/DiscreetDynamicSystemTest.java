@@ -107,7 +107,7 @@ public class DiscreetDynamicSystemTest extends GenericTest {
 			tmp = ((DiscreetMonoid) timeSpace).get(i);
 			evolutionOp = dinamicSystem.getEvolutionOperator(tmp);
 			isTrue = isTrue && ((Real) evolutionOp.get(vec)).getRepresentant().equals(Math.pow(2, i));
-			logger.info(i + ": " + ((Vector) evolutionOp.get(vec)).toXml());
+			logger.debug(i + ": " + ((Vector) evolutionOp.get(vec)).toXml());
 		}
 		Assert.assertTrue(isTrue);
 	}
@@ -169,7 +169,7 @@ public class DiscreetDynamicSystemTest extends GenericTest {
 			}
 			// this is fine, fibonaccis series is being computed correctly
 			Assert.assertTrue(true);
-			logger.info("{}: {}", i, comp);
+			logger.debug("{}: {}", i, comp);
 		}
 
 	}

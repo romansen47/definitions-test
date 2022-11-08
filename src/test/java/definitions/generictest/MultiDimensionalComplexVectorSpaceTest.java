@@ -37,7 +37,7 @@ public class MultiDimensionalComplexVectorSpaceTest extends GenericTest {
 		final boolean newAns = Math.abs(doubleAns) < 0.1;
 
 		Assert.assertTrue(newAns);
-		logger.info("norm = {}, square root of dim = {}, difference = {}", complexSpace.norm(vec).doubleValue(),
+		logger.debug("norm = {}, square root of dim = {}, difference = {}", complexSpace.norm(vec).doubleValue(),
 				Math.sqrt(dim), doubleAns);
 	}
 

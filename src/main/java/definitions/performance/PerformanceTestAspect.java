@@ -1,5 +1,7 @@
 package definitions.performance;
 
+import java.util.regex.Pattern;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -16,7 +18,8 @@ public class PerformanceTestAspect {
 		long time = System.nanoTime();
 		Object answer = pjp.proceed();
 		time = System.nanoTime() - time;
-		logger.info("time for test method {}: {}", pjp.toShortString(), time);
+		String jp = pjp.toShortString().split(Pattern.quote("execution("))[1].split(Pattern.quote("("))[0];
+		logger.info("execution time for {}: {}", jp, time);
 		return answer;
 	}
 

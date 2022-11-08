@@ -93,7 +93,7 @@ public class FunctionalSpaceTest extends GenericTest {
 				}
 				s += c.toString() + "  ";
 			}
-			logger.info(s);
+			logger.debug(s);
 		}
 		return ans;
 	}
@@ -112,7 +112,7 @@ public class FunctionalSpaceTest extends GenericTest {
 				}
 				s += c.toString() + "  ";
 			}
-			logger.info(s);
+			logger.debug(s);
 		}
 		return ans;
 	}

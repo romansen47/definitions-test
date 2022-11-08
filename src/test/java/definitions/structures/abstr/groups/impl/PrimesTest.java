@@ -79,7 +79,7 @@ public class PrimesTest extends GenericTest {
 		NaturalNumber number99991 = (NaturalNumber) (((Naturals) integers).get(99991));
 		boolean isPrime99991 = integers.isPrimeElement(number99991);
 		String s = isPrime99991 ? "is a prime" : "is not a prime";
-		logger.info("{} {}", number99991, s);
+		logger.debug("{} {}", number99991, s);
 		Assert.assertTrue(isPrime99991);
 		this.distribution.plot(0, maxValue);
 	}

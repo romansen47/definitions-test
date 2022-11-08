@@ -53,25 +53,25 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 	@BeforeClass
 	public static void setUp() throws Throwable {
-		logger.info("loading {}", "space");
+		logger.debug("loading {}", "space");
 		space = (EuclideanSpace) GenericTest.getGenerator().getTrigonometricSpace(GenericTest.getRealLine(), degree);
 
-		logger.info("loading {}", "extendedSpace");
+		logger.debug("loading {}", "extendedSpace");
 		extendedSpace = (EuclideanSpace) GenericTest.getGenerator()
 				.getTrigonometricFunctionSpaceWithLinearGrowth(GenericTest.getRealLine(), degree);
 
-		logger.info("loading {}", "extendedSobolevSpace");
+		logger.debug("loading {}", "extendedSobolevSpace");
 		extendedSobolevSpace = GenericTest.getSpaceGenerator().getTrigonometricSobolevSpaceWithLinearGrowth(
 				GenericTest.getRealLine(), sobolevDegree, Math.PI, degree);
 
-		logger.info("loading {}", "derivativeOperatorOnExtendedSpace");
+		logger.debug("loading {}", "derivativeOperatorOnExtendedSpace");
 		derivativeOperatorOnExtendedSpace = new FiniteDimensionalDerivativeOperator(extendedSpace, extendedSpace);
 
-		logger.info("loading {}", "derivativeOperatorOnExtendedSobolevSpace");
+		logger.debug("loading {}", "derivativeOperatorOnExtendedSobolevSpace");
 		derivativeOperatorOnExtendedSobolevSpace = new FiniteDimensionalDerivativeOperator(extendedSobolevSpace,
 				extendedSobolevSpace);
 
-		logger.info("loading {}", "sine");
+		logger.debug("loading {}", "sine");
 		sine = new Sine(1, 0, 1) {
 
 			@Override
@@ -80,7 +80,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 			}
 		};
 
-		logger.info("loading {}", "cosine");
+		logger.debug("loading {}", "cosine");
 		cosine = new Sine(1, Math.PI / 2, 1) {
 
 			@Override
@@ -89,7 +89,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 			}
 		};
 
-		logger.info("loading {}", "monome");
+		logger.debug("loading {}", "monome");
 
 	}
 
@@ -100,22 +100,22 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 	 */
 	@Test
 	public void parallelTest() {
-		logger.info("parallelTest");
+		logger.debug("parallelTest");
 		boolean ans = true;
-		logger.info("dim of space = {}, must be {}", space.genericBaseToList(), 2 * degree + 1);
+		logger.debug("dim of space = {}, must be {}", space.genericBaseToList(), 2 * degree + 1);
 		ans = ans && space.genericBaseToList().size() == 2 * degree + 1;
 		Assert.assertTrue(ans);
-		logger.info("dim of extendedSpace = {}, must be {}", extendedSpace, 2 * (degree + 1));
+		logger.debug("dim of extendedSpace = {}, must be {}", extendedSpace, 2 * (degree + 1));
 		ans = ans && extendedSpace.genericBaseToList().size() == 2 * (degree + 1);
 		Assert.assertTrue(ans);
-		logger.info("dim of extendedSobolevSpace = {}, must be {}", extendedSobolevSpace, 2 * (degree + 1));
+		logger.debug("dim of extendedSobolevSpace = {}, must be {}", extendedSobolevSpace, 2 * (degree + 1));
 		ans = ans && extendedSobolevSpace.genericBaseToList().size() == 2 * (degree + 1);
 		Assert.assertTrue(ans);
 	}
 
 	@Test
 	public void testMonomeOnExtendedSpace() {
-		logger.info("testLinearMonomeOnExtendedSpace");
+		logger.debug("testLinearMonomeOnExtendedSpace");
 
 		monome = new Monome(monomeDegree) {
 
@@ -125,7 +125,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 			}
 		};
 
-		logger.info("loading {}", "derivative of the monome");
+		logger.debug("loading {}", "derivative of the monome");
 		exactDerivative = new Monome(monomeDegree - 1) {
 
 			@Override
@@ -144,7 +144,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 	@Test
 	public void testMonomeOnExtendedSobolevSpace() {
-		logger.info("testMonomeOnExtendedSobolevSpace");
+		logger.debug("testMonomeOnExtendedSobolevSpace");
 
 		monome = new Monome(monomeDegree) {
 
@@ -154,7 +154,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 			}
 		};
 
-		logger.info("loading {}", "derivative of the monome");
+		logger.debug("loading {}", "derivative of the monome");
 		exactDerivative = new Monome(monomeDegree - 1) {
 
 			@Override
@@ -173,8 +173,8 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 	@Test
 	public void testDerivativeOfSineInL2() {
-		logger.info("testDerivativeOfSineInL2");
-		LogManager.getLogger(DerivativesAndIntegralsTest.class).info("Plotting derivative of sine in L^2:");
+		logger.debug("testDerivativeOfSineInL2");
+		LogManager.getLogger(DerivativesAndIntegralsTest.class).debug("Plotting derivative of sine in L^2:");
 		final Function derivative = (Function) ((DerivativeOperator) derivativeOperatorOnExtendedSobolevSpace)
 				.get(sine);
 		derivative.plotCompare(-Math.PI, Math.PI, cosine);
@@ -189,7 +189,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 	 * @param space              the given function space
 	 */
 	public void testMonome(DerivativeOperator derivativeOperator, Monome monome, NormedSpace space) {
-		LogManager.getLogger(DerivativesAndIntegralsTest.class).info("Comparing implicite versus explicite derivative");
+		LogManager.getLogger(DerivativesAndIntegralsTest.class).debug("Comparing implicite versus explicite derivative");
 		final Function derivative = (Function) (derivativeOperator).get(monome, 1);
 		final Function derivative2 = (Function) (derivativeOperator).get(monome);
 		derivative.plotCompare(-Math.PI, Math.PI, derivative2);

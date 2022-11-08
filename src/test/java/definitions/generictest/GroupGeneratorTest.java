@@ -66,12 +66,12 @@ public class GroupGeneratorTest extends GenericTest {
 			final Element addition = rationals.operation(tmp, inverse);
 			final boolean ans = neutralElement.equals(addition);
 			Assert.assertTrue(ans);
-			logger.info("rational: {}, inverse: {}, addition: {}, check: {}", tmp, inverse, addition, ans);
+			logger.debug("rational: {}, inverse: {}, addition: {}, check: {}", tmp, inverse, addition, ans);
 		}
 		final Element a = rationals.get(-5);
 		final Element b = rationals.get(15);
 		Element ans = rationals.operation(a, b);
-		logger.info("{}+{}={}", a, b, ans);
+		logger.debug("{}+{}={}", a, b, ans);
 	}
 
 	@Test
@@ -97,32 +97,32 @@ public class GroupGeneratorTest extends GenericTest {
 			debugTmp = (FieldElement) GenericTest.getRationals().multiplication(var, half);
 			tmp = GenericTest.getRationals().getInverseElement(debugTmp);
 			var = (FieldElement) GenericTest.getRationals().addition(var, tmp);
-			logger.info(i + ": " + var.toString());
+			logger.debug(i + ": " + var.toString());
 		}
-		logger.info("Inverse of new zero is "
+		logger.debug("Inverse of new zero is "
 				+ GenericTest.getRationals().getMuliplicativeMonoid().getInverseElement(newZero));
-		logger.info("for i==5 we get an error. to be fixed, e.g. by replacing (224,208) by (16,0) somewhere...");
+		logger.debug("for i==5 we get an error. to be fixed, e.g. by replacing (224,208) by (16,0) somewhere...");
 	}
 
 	@Test
 	public void testBinField() {
 
 		final PrimeField field = Generator.getInstance().getGroupGenerator().getConstructedBinaries();
-		logger.info(field);
+		logger.debug(field);
 
 		final Element zero = field.getZero();
 		final Element one = field.getOne();
-		logger.info("zero " + zero.toString() + ", one " + one.toString());
+		logger.debug("zero " + zero.toString() + ", one " + one.toString());
 
-		logger.info("zero + zero: " + field.addition(zero, zero));
-		logger.info("zero + one: " + field.addition(zero, one));
-		logger.info("one + zero: " + field.addition(one, zero));
-		logger.info("one + one: " + field.addition(one, one) + "\r");
+		logger.debug("zero + zero: " + field.addition(zero, zero));
+		logger.debug("zero + one: " + field.addition(zero, one));
+		logger.debug("one + zero: " + field.addition(one, zero));
+		logger.debug("one + one: " + field.addition(one, one) + "\r");
 
-		logger.info("zero * zero: " + field.multiplication(zero, zero));
-		logger.info("zero * one: " + field.multiplication(zero, one));
-		logger.info("one * zero: " + field.multiplication(one, zero));
-		logger.info("one * one: " + field.multiplication(one, one));
+		logger.debug("zero * zero: " + field.multiplication(zero, zero));
+		logger.debug("zero * one: " + field.multiplication(zero, one));
+		logger.debug("one * zero: " + field.multiplication(one, zero));
+		logger.debug("one * one: " + field.multiplication(one, one));
 
 	}
 

@@ -165,23 +165,23 @@ public abstract class GenericSpaceTest extends GenericTest {
 		long time1 = System.nanoTime();
 		double distance = getSpace().distance(fProjection, f).getRepresentant();
 		time1 = System.nanoTime() - time1;
-		logger.info("time for computing distance = {}", time1);
+		logger.debug("time for computing distance = {}", time1);
 
 		long time2 = System.nanoTime();
 		double norm_of_function = getSpace().norm(f).getRepresentant();
 		time2 = System.nanoTime() - time2;
-		logger.info("time for computing norm of the function  = {}", time2);
+		logger.debug("time for computing norm of the function  = {}", time2);
 
 		long time3 = System.nanoTime();
 		double norm_of_projection = getSpace().norm(fProjection).getRepresentant();
 		time3 = System.nanoTime() - time3;
-		logger.info("time for computing norm of projection = {}", time3);
+		logger.debug("time for computing norm of projection = {}", time3);
 
-		logger.info("distance = {}", distance);
-		logger.info("norm of function = {}", norm_of_function);
-		logger.info("norm of its projection = {}", norm_of_projection);
+		logger.debug("distance = {}", distance);
+		logger.debug("norm of function = {}", norm_of_function);
+		logger.debug("norm of its projection = {}", norm_of_projection);
 		String s = sobolevDegree == null ? "Trig(" + degree + ")" : "on SobTrig(" + degree + "," + sobolevDegree + ")";
-		logger.info("distance / norm = {} / {} = {}  {}, expected tolerance: {}", distance, norm_of_function,
+		logger.debug("distance / norm = {} / {} = {}  {}, expected tolerance: {}", distance, norm_of_function,
 				distance / norm_of_function, s, getEps());
 		Assert.assertTrue(distance / norm_of_function < eps);
 	}

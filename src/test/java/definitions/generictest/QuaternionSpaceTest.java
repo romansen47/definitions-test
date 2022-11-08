@@ -155,14 +155,14 @@ public class QuaternionSpaceTest extends GenericTest {
 	@Test
 	public void test() {
 		var x = quaternionSpace.get(0, 0, 2, 0);
-		logger.info("a = {}", x);
+		logger.debug("a = {}", x);
 		var y = quaternionSpace.get(0, 0, 3, 0);
-		logger.info("b = {}", y);
+		logger.debug("b = {}", y);
 		var z1 = quaternionSpace.addition(x, y);
-		logger.info("a + b = {}", z1);
+		logger.debug("a + b = {}", z1);
 		Assert.assertEquals(((Real) z1.getJ()), getRealLine().get(5));
 		var z2 = quaternionSpace.multiplication(x, y);
-		logger.info("a * b = {}", z2);
+		logger.debug("a * b = {}", z2);
 		Assert.assertEquals(((Quaternion) z2).getReal(), getRealLine().get(-6));
 	}
 
@@ -174,14 +174,14 @@ public class QuaternionSpaceTest extends GenericTest {
 		fK.plotCompare(-1, 1, fSquare);
 		Double scalarProduct = ((Real) genericFunctionSpace.getIntegral(fReal, fNegSquare, -1, 1, eps))
 				.getRepresentant();
-		logger.info("scalar product <fReal,fNegSquare> = {}", scalarProduct);
+		logger.debug("scalar product <fReal,fNegSquare> = {}", scalarProduct);
 		Double normFReal = Math
 				.pow(((Real) genericFunctionSpace.getIntegral(fReal, fReal, -1, 1, eps)).getRepresentant(), 0.5);
-		logger.info("norm ||fReal|| = {}", normFReal);
+		logger.debug("norm ||fReal|| = {}", normFReal);
 		Double normFNegSquare = Math.pow(
 				((Real) genericFunctionSpace.getIntegral(fNegSquare, fNegSquare, -1, 1, eps)).getRepresentant(), 0.5);
-		logger.info("norm ||fNegSquare|| = {}", normFNegSquare);
-		logger.info("scalarProduct / (normFReal * normFNegSquare) = {} / ( {} * {} ) = {}", scalarProduct, normFReal,
+		logger.debug("norm ||fNegSquare|| = {}", normFNegSquare);
+		logger.debug("scalarProduct / (normFReal * normFNegSquare) = {} / ( {} * {} ) = {}", scalarProduct, normFReal,
 				normFNegSquare, scalarProduct / (normFReal * normFNegSquare));
 		Assert.assertEquals(1d, scalarProduct / (normFReal * normFNegSquare), eps);
 

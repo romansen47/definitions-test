@@ -77,7 +77,7 @@ public class CompareTrigonometricSpaceTest extends GenericSpaceTest {
 		double distance1 = extendedSpace.distance(sFunction1, extendedf).getDoubleValue();
 		double distance2 = extendedSpace.distance(f, sFunction1).getDoubleValue();
 		double sum = Math.pow(Math.pow(distance, 2) + Math.pow(distance1, 2) + Math.pow(distance2, 2), 0.5);
-		logger.info("{}+{}+{} = {}, relative distance = distance / sum = {}", distance, distance1, distance2, sum,
+		logger.debug("{}+{}+{} = {}, relative distance = distance / sum = {}", distance, distance1, distance2, sum,
 				distance / sum);
 		Assert.assertTrue(distance / sum < eps);
 	}
@@ -94,7 +94,7 @@ public class CompareTrigonometricSpaceTest extends GenericSpaceTest {
 		double distance1 = extendedSpace.distance(sFunction2, f).getDoubleValue();
 		double distance2 = extendedSpace.distance(sFunction2, extendedf).getDoubleValue();
 		double sum = Math.pow(Math.pow(distance, 2) + Math.pow(distance1, 2) + Math.pow(distance2, 2), 0.5);
-		logger.info("{}+{}+{} = {}, relative distance = distance / sum = {}", distance, distance1, distance2, sum,
+		logger.debug("{}+{}+{} = {}, relative distance = distance / sum = {}", distance, distance1, distance2, sum,
 				distance / sum);
 		Assert.assertTrue(distance / sum < eps);
 	}
@@ -107,7 +107,7 @@ public class CompareTrigonometricSpaceTest extends GenericSpaceTest {
 		f.plotCompare(-Math.PI, Math.PI, fSobolev);
 		double distance1 = space.distance(f, sFunction1).getDoubleValue();
 		double distance2 = space.distance(fSobolev, sFunction1).getDoubleValue();
-		logger.info("distance1={}, distance2={}", distance1, distance2);
+		logger.debug("distance1={}, distance2={}", distance1, distance2);
 		Function f2 = sFunction1.getProjection(extendedSpace);
 		Function fSobolev2 = sFunction1.getProjection(extendedSobolevSpace);
 		f2.plotCompare(-Math.PI, Math.PI, fSobolev2);

@@ -82,7 +82,7 @@ public abstract class GenericTest {
 
 	@Before
 	public void logNameOfTest() {
-		getLogger().info("test class: {}", getClass());
+		getLogger().debug("test class: {}", getClass());
 	}
 
 	public static void setComplexPlane(final ComplexPlane complexPlane) {
