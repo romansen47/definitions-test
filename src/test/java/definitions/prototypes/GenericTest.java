@@ -61,12 +61,12 @@ public abstract class GenericTest {
 	public static ApplicationContextAware getSpringConfiguration() {
 		if (springConfiguration == null) {
 			logger.debug("Initializing Spring configuration\r");
-			setGeneratos();
+			setGenerators();
 		}
 		return springConfiguration;
 	}
 
-	private static void setGeneratos() {
+	private static void setGenerators() {
 		setSpringConfiguration(SpringConfiguration.getSpringConfiguration());
 		setGenerator(Generator.getInstance());
 		GroupGenerator groupGen = Generator.getInstance().getGroupGenerator();
