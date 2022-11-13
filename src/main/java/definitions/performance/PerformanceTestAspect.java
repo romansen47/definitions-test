@@ -1,10 +1,12 @@
 package definitions.performance;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,8 +23,8 @@ public class PerformanceTestAspect {
 	private BufferedWriter bufferedWriter;
 	private FileWriter fileWriter;
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-	LocalDateTime now = LocalDateTime.now();
-	private String fileName = "src/test/resources/" + now.toString();
+	private String testDirectory = "src/test/resources/tests";
+	String fileName = testDirectory + "/" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
 
 	@Around("@annotation(org.junit.Test)")
 	public Object measure(ProceedingJoinPoint pjp) throws Throwable {
@@ -47,6 +49,7 @@ public class PerformanceTestAspect {
 
 	public FileWriter getFileWriter() throws IOException {
 		if (fileWriter == null) {
+			new File(testDirectory).mkdirs();
 			fileWriter = new FileWriter(fileName);
 		}
 		return fileWriter;
@@ -58,7 +61,6 @@ public class PerformanceTestAspect {
 
 	private void log(String jp, long time) throws IOException {
 		logger.info("execution time for {}: {}", jp, time);
-
 		getBufferedWriter();
 		bufferedWriter.write("execution time for " + jp + ": " + time);
 		bufferedWriter.flush();
