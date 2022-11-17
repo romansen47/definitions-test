@@ -24,7 +24,9 @@ public class PerformanceTestAspect {
 	private FileWriter fileWriter;
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 	private String testDirectory = "src/test/resources/tests";
-	String fileName = testDirectory + "/" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
+	String s = new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
+	String fileName = testDirectory + "/log-" + s.split(".txt")[0] + ".csv";
+	String delimiter = ",";
 
 	@Around("@annotation(org.junit.Test)")
 	public Object measure(ProceedingJoinPoint pjp) throws Throwable {
@@ -62,7 +64,8 @@ public class PerformanceTestAspect {
 	private void log(String jp, long time) throws IOException {
 		logger.info("execution time for {}: {}", jp, time);
 		getBufferedWriter();
-		bufferedWriter.write("execution time for " + jp + ": " + time);
+		bufferedWriter.write(jp + delimiter + time);
+		bufferedWriter.newLine();
 		bufferedWriter.flush();
 	}
 
