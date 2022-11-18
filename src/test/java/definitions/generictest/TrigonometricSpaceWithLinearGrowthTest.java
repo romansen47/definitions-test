@@ -6,8 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 
-import definitions.prototypes.GenericSpaceTest;
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericSpaceTest;
 import exceptions.DevisionByZeroException;
 import exceptions.ExtendingFailedException;
 
@@ -26,9 +25,9 @@ public class TrigonometricSpaceWithLinearGrowthTest extends GenericSpaceTest {
 		eps = 1d;
 		setDegree(3);
 		setSobolevDegree(0);
-		setField(GenericTest.getRealLine());
-		setSpace(GenericTest.getSpaceGenerator()
-				.getTrigonometricFunctionSpaceWithLinearGrowth(GenericTest.getRealLine(), getDegree(), Math.PI));
+		setField(getRealLine());
+		setSpace(
+				getSpaceGenerator().getTrigonometricFunctionSpaceWithLinearGrowth(getRealLine(), getDegree(), Math.PI));
 		super.setUp();
 	}
 }

@@ -8,8 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import definitions.prototypes.GenericSpaceTest;
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericSpaceTest;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
 import definitions.structures.euclidean.functionspaces.EuclideanFunctionSpace;
 import definitions.structures.euclidean.vectors.impl.GenericFunction;
@@ -52,16 +51,13 @@ public class CompareTrigonometricSpaceTest extends GenericSpaceTest {
 	@Before
 	public void setUp() throws DevisionByZeroException, IOException, ExtendingFailedException {
 		eps = 9e-1;
-		space = (EuclideanFunctionSpace) GenericTest.getSpaceGenerator()
-				.getTrigonometricSpace(GenericTest.getRealLine(), getDegree(), Math.PI);
+		space = getSpaceGenerator().getTrigonometricSpace(getRealLine(), getDegree(), Math.PI);
 		setSpace(space);
-		sobolevSpace = (EuclideanFunctionSpace) GenericTest.getSpaceGenerator()
-				.getTrigonometricSobolevSpace(GenericTest.getRealLine(), getDegree(), getSobolevDegree());
-		extendedSpace = (EuclideanFunctionSpace) GenericTest.getSpaceGenerator()
-				.getTrigonometricFunctionSpaceWithLinearGrowth(GenericTest.getRealLine(), getDegree(), Math.PI);
-		extendedSobolevSpace = (EuclideanFunctionSpace) GenericTest.getSpaceGenerator()
-				.getTrigonometricSobolevSpaceWithLinearGrowth(GenericTest.getRealLine(), getSobolevDegree(), Math.PI,
-						getDegree());
+		sobolevSpace = getSpaceGenerator().getTrigonometricSobolevSpace(getRealLine(), getDegree(), getSobolevDegree());
+		extendedSpace = (EuclideanFunctionSpace) getSpaceGenerator()
+				.getTrigonometricFunctionSpaceWithLinearGrowth(getRealLine(), getDegree(), Math.PI);
+		extendedSobolevSpace = (EuclideanFunctionSpace) getSpaceGenerator()
+				.getTrigonometricSobolevSpaceWithLinearGrowth(getRealLine(), getSobolevDegree(), Math.PI, getDegree());
 		super.setUp();
 	}
 

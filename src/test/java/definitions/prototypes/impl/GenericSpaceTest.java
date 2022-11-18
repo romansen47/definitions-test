@@ -1,4 +1,4 @@
-package definitions.prototypes;
+package definitions.prototypes.impl;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import definitions.structures.abstr.algebra.fields.Field;
 import definitions.structures.abstr.algebra.fields.scalars.Scalar;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Real;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectors.impl.GenericFunction;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 import exceptions.DevisionByZeroException;
@@ -107,7 +106,7 @@ public abstract class GenericSpaceTest extends GenericTest {
 	@Before
 	public void setUp() throws IOException, DevisionByZeroException, ExtendingFailedException {
 
-		setField(GenericTest.getRealLine());
+		setField(getRealLine());
 		testValues1 = definitions.generictest.Reader.readFile(getPath1());
 		testValues2 = definitions.generictest.Reader.readFile(getPath2());
 		sFunction1 = new GenericFunction() {
@@ -204,14 +203,14 @@ public abstract class GenericSpaceTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 
 			@Override
 			public Scalar value(Scalar input) {
 				final Double inputValue = ((Real) input).getDoubleValue();
 				final double abs = Math.abs((Math.sin(inputValue) * Math.cos(inputValue)) - 0.25);
-				return Generator.getInstance().getFieldGenerator().getRealLine().get(abs);
+				return getRealLine().get(abs);
 			}
 		}, getDegree(), getSobolevDegree(), getEps());
 	}
@@ -221,7 +220,7 @@ public abstract class GenericSpaceTest extends GenericTest {
 		final Function absolute = new GenericFunction() {
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 
 			@Override
@@ -237,7 +236,7 @@ public abstract class GenericSpaceTest extends GenericTest {
 	public void testOnIdentity() {
 		final Function identity = new GenericFunction() {
 
-			private Field f = GenericTest.getRealLine();
+			private Field f = getRealLine();
 
 			@Override
 			public Field getField() {

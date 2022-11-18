@@ -6,8 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 
-import definitions.prototypes.GenericSpaceTest;
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericSpaceTest;
 import exceptions.DevisionByZeroException;
 import exceptions.ExtendingFailedException;
 
@@ -34,8 +33,7 @@ public class TrigonometricSobolevSpaceTest extends GenericSpaceTest {
 		setSobolevDegree(1);
 		eps = 1d;
 		super.setUp();
-		setSpace(GenericTest.getSpaceGenerator().getTrigonometricSobolevSpace(getField(), getDegree(),
-				getSobolevDegree()));
+		setSpace(getSpaceGenerator().getTrigonometricSobolevSpace(getField(), getDegree(), getSobolevDegree()));
 	}
 
 }

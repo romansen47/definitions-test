@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.Field;
 import definitions.structures.abstr.algebra.fields.impl.QuaternionSpace;
 import definitions.structures.abstr.algebra.fields.scalars.Scalar;
@@ -48,7 +48,7 @@ public class QuaternionSpaceTest extends GenericTest {
 
 	};
 
-	public static Function fSquare = new GenericFunction() {
+	public Function fSquare = new GenericFunction() {
 
 		public Field field = getRealLine();
 
@@ -60,12 +60,12 @@ public class QuaternionSpaceTest extends GenericTest {
 		@Override
 		public Vector value(Scalar input) {
 			double x = ((Real) input).getRepresentant();
-			return ((Real) getRealLine().get(2 * Math.pow(x, 2)));
+			return (getRealLine().get(2 * Math.pow(x, 2)));
 		}
 
 	};
 
-	public static Function fNegSquare = new GenericFunction() {
+	public Function fNegSquare = new GenericFunction() {
 
 		public Field field = getRealLine();
 
@@ -77,12 +77,12 @@ public class QuaternionSpaceTest extends GenericTest {
 		@Override
 		public Vector value(Scalar input) {
 			double x = ((Real) input).getRepresentant();
-			return ((Real) getRealLine().get(-2 * Math.pow(x, 2)));
+			return (getRealLine().get(-2 * Math.pow(x, 2)));
 		}
 
 	};
 
-	public static Function fReal = new GenericFunction() {
+	public Function fReal = new GenericFunction() {
 
 		public Field field = getRealLine();
 
@@ -99,7 +99,8 @@ public class QuaternionSpaceTest extends GenericTest {
 		}
 
 	};
-	public static Function fI = new GenericFunction() {
+
+	public Function fI = new GenericFunction() {
 
 		public Field field = getRealLine();
 
@@ -117,7 +118,7 @@ public class QuaternionSpaceTest extends GenericTest {
 
 	};
 
-	public static Function fJ = new GenericFunction() {
+	public Function fJ = new GenericFunction() {
 
 		public Field field = getRealLine();
 
@@ -134,7 +135,7 @@ public class QuaternionSpaceTest extends GenericTest {
 		}
 
 	};
-	public static Function fK = new GenericFunction() {
+	public Function fK = new GenericFunction() {
 
 		public Field field = getRealLine();
 
@@ -160,7 +161,7 @@ public class QuaternionSpaceTest extends GenericTest {
 		logger.debug("b = {}", y);
 		var z1 = quaternionSpace.addition(x, y);
 		logger.debug("a + b = {}", z1);
-		Assert.assertEquals(((Real) z1.getJ()), getRealLine().get(5));
+		Assert.assertEquals((z1.getJ()), getRealLine().get(5));
 		var z2 = quaternionSpace.multiplication(x, y);
 		logger.debug("a * b = {}", z2);
 		Assert.assertEquals(((Quaternion) z2).getReal(), getRealLine().get(-6));

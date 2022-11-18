@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.Field;
 import definitions.structures.abstr.algebra.fields.impl.ComplexPlane;
 import definitions.structures.abstr.algebra.fields.scalars.Scalar;
@@ -18,7 +18,6 @@ import definitions.structures.abstr.vectorspaces.VectorSpace;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
 import definitions.structures.dynamicsystems.DynamicSystem;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectors.impl.GenericFunction;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 
@@ -31,8 +30,8 @@ import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 public class TwoDimDynSysTest extends GenericTest {
 
 	final int duration = 1000;
-	final EuclideanSpace complexPhaseSpace = (EuclideanSpace) spaceGenerator.getFiniteDimensionalComplexSpace(1);
-	final EuclideanSpace realPhaseSpace = GenericTest.getSpaceGenerator().getFiniteDimensionalVectorSpace(2);
+	final EuclideanSpace complexPhaseSpace = (EuclideanSpace) getSpaceGenerator().getFiniteDimensionalComplexSpace(1);
+	final EuclideanSpace realPhaseSpace = getSpaceGenerator().getFiniteDimensionalVectorSpace(2);
 
 	final Complex complexInitialCondition = ((ComplexPlane) complexPhaseSpace).get(0.9, 0.1);
 	final Vector realInitialCondition = realPhaseSpace.genericBaseToList().get(0);
@@ -43,9 +42,9 @@ public class TwoDimDynSysTest extends GenericTest {
 		public Element get(Element vec) {
 			final double a = ((Real) ((Complex) vec).getReal()).getDoubleValue();
 			final double b = ((Real) ((Complex) vec).getImag()).getDoubleValue();
-			final Element newVec = GenericTest.getComplexPlane().get(a - (a * a), b);
-			return GenericTest.getComplexPlane().multiplication(newVec, GenericTest.getComplexPlane()
-					.multiplication(GenericTest.getComplexPlane().getMinusOne(), GenericTest.getComplexPlane().getI()));
+			final Element newVec = getComplexPlane().get(a - (a * a), b);
+			return getComplexPlane().multiplication(newVec,
+					getComplexPlane().multiplication(getComplexPlane().getMinusOne(), getComplexPlane().getI()));
 		}
 
 		@Override
@@ -69,7 +68,7 @@ public class TwoDimDynSysTest extends GenericTest {
 
 		@Override
 		public Group getTimeSpace() {
-			return Generator.getInstance().getGroupGenerator().getIntegers();
+			return getIntegers();
 		}
 
 	};
@@ -81,13 +80,13 @@ public class TwoDimDynSysTest extends GenericTest {
 		Complex last;
 		for (int i = 0; i < duration; i++) {
 			last = list.get(list.size() - 1);
-			list.add((Complex) complexSystem.getEvolutionOperator(GenericTest.getIntegers().get((double) i)).get(last));
+			list.add((Complex) complexSystem.getEvolutionOperator(getIntegers().get((double) i)).get(last));
 		}
 		final Function test = new GenericFunction() {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 
 			@Override

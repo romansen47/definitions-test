@@ -8,12 +8,11 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Real;
 import definitions.structures.abstr.algebra.semigroups.Element;
 import definitions.structures.abstr.mappings.Functional;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 
 /**
@@ -29,12 +28,12 @@ public class FunctionalSpaceTest extends GenericTest {
 	final EuclideanSpace space = getSpaceGenerator().getFiniteDimensionalVectorSpace(dim);
 	final EuclideanSpace dualSpace = space.getDualSpace();
 	final EuclideanSpace dualDualSpace = dualSpace.getDualSpace();
-	final EuclideanSpace functionSpace = Generator.getInstance().getSpaceGenerator()
-			.getNormedTrigonometricSpace(Generator.getInstance().getFieldGenerator().getRealLine(), 1);
+	final EuclideanSpace functionSpace = getSpaceGenerator()
+			.getNormedTrigonometricSpace(getFieldGenerator().getRealLine(), 1);
 	final EuclideanSpace dualFunctionSpace = functionSpace.getDualSpace();
 	final EuclideanSpace dualDualFunctionSpace = dualFunctionSpace.getDualSpace();
-	final EuclideanSpace sobolevSpace = Generator.getInstance().getSpaceGenerator()
-			.getTrigonometricSobolevSpace(Generator.getInstance().getFieldGenerator().getRealLine(), dim, sobOrder);
+	final EuclideanSpace sobolevSpace = getSpaceGenerator()
+			.getTrigonometricSobolevSpace(getFieldGenerator().getRealLine(), dim, sobOrder);
 	final EuclideanSpace dualSobolevSpace = sobolevSpace.getDualSpace();
 
 	final EuclideanSpace dualDualSobolevSpace = dualSobolevSpace.getDualSpace();

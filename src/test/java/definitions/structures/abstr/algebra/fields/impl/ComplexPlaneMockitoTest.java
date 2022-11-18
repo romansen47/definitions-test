@@ -5,12 +5,11 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.scalars.Scalar;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Complex;
 import definitions.structures.abstr.mappings.VectorSpaceHomomorphism;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
-import definitions.structures.euclidean.Generator;
 
 public class ComplexPlaneMockitoTest extends GenericTest {
 
@@ -57,7 +56,7 @@ public class ComplexPlaneMockitoTest extends GenericTest {
 
 	@Test
 	public void getPrimeFieldTest() {
-		Assert.assertEquals(complexPlane.getPrimeField(), Generator.getInstance().getGroupGenerator().getRationals());
+		Assert.assertEquals(complexPlane.getPrimeField(), getRationals());
 	}
 
 }

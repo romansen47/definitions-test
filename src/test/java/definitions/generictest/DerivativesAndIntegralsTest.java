@@ -6,15 +6,14 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.Field;
 import definitions.structures.abstr.algebra.fields.scalars.Scalar;
 import definitions.structures.abstr.vectorspaces.NormedSpace;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.mappings.impl.DerivativeOperator;
 import definitions.structures.euclidean.mappings.impl.FiniteDimensionalDerivativeOperator;
 import definitions.structures.euclidean.vectors.impl.Monome;
@@ -51,18 +50,18 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 		return testfunctions;
 	}
 
-	@BeforeClass
-	public static void setUp() throws Throwable {
+	@Before
+	public void setUp() throws Throwable {
 		logger.debug("loading {}", "space");
-		space = (EuclideanSpace) GenericTest.getGenerator().getTrigonometricSpace(GenericTest.getRealLine(), degree);
+		space = (EuclideanSpace) getGenerator().getTrigonometricSpace(getRealLine(), degree);
 
 		logger.debug("loading {}", "extendedSpace");
-		extendedSpace = (EuclideanSpace) GenericTest.getGenerator()
-				.getTrigonometricFunctionSpaceWithLinearGrowth(GenericTest.getRealLine(), degree);
+		extendedSpace = (EuclideanSpace) getGenerator().getTrigonometricFunctionSpaceWithLinearGrowth(getRealLine(),
+				degree);
 
 		logger.debug("loading {}", "extendedSobolevSpace");
-		extendedSobolevSpace = GenericTest.getSpaceGenerator().getTrigonometricSobolevSpaceWithLinearGrowth(
-				GenericTest.getRealLine(), sobolevDegree, Math.PI, degree);
+		extendedSobolevSpace = getSpaceGenerator().getTrigonometricSobolevSpaceWithLinearGrowth(getRealLine(),
+				sobolevDegree, Math.PI, degree);
 
 		logger.debug("loading {}", "derivativeOperatorOnExtendedSpace");
 		derivativeOperatorOnExtendedSpace = new FiniteDimensionalDerivativeOperator(extendedSpace, extendedSpace);
@@ -76,7 +75,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 		};
 
@@ -85,7 +84,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 		};
 
@@ -121,7 +120,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 		};
 
@@ -130,7 +129,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return Generator.getInstance().getFieldGenerator().getRealLine();
+				return getFieldGenerator().getRealLine();
 			}
 
 			@Override
@@ -150,7 +149,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return GenericTest.getRealLine();
+				return getRealLine();
 			}
 		};
 
@@ -159,7 +158,7 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 
 			@Override
 			public Field getField() {
-				return Generator.getInstance().getFieldGenerator().getRealLine();
+				return getFieldGenerator().getRealLine();
 			}
 
 			@Override
@@ -189,7 +188,8 @@ public class DerivativesAndIntegralsTest extends GenericTest {
 	 * @param space              the given function space
 	 */
 	public void testMonome(DerivativeOperator derivativeOperator, Monome monome, NormedSpace space) {
-		LogManager.getLogger(DerivativesAndIntegralsTest.class).debug("Comparing implicite versus explicite derivative");
+		LogManager.getLogger(DerivativesAndIntegralsTest.class)
+				.debug("Comparing implicite versus explicite derivative");
 		final Function derivative = (Function) (derivativeOperator).get(monome, 1);
 		final Function derivative2 = (Function) (derivativeOperator).get(monome);
 		derivative.plotCompare(-Math.PI, Math.PI, derivative2);

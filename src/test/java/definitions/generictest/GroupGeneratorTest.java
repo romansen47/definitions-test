@@ -7,13 +7,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.FieldElement;
 import definitions.structures.abstr.algebra.fields.PrimeField;
 import definitions.structures.abstr.algebra.groups.DiscreetGroup;
 import definitions.structures.abstr.algebra.groups.Group;
 import definitions.structures.abstr.algebra.semigroups.Element;
-import definitions.structures.euclidean.Generator;
 
 public class GroupGeneratorTest extends GenericTest {
 
@@ -35,13 +34,13 @@ public class GroupGeneratorTest extends GenericTest {
 
 	@Before
 	public void createStructures() {
-		one = GenericTest.getIntegers().getOne();
-		minusOne = GenericTest.getIntegers().getInverseElement(GenericTest.getIntegers().getOne());
-		zero = GenericTest.getIntegers().getNeutralElement();
-		two = GenericTest.getIntegers().addition(one, one);
-		four1 = GenericTest.getIntegers().multiplication(two, two);
-		four2 = GenericTest.getIntegers().addition(two, two);
-		minusFour = GenericTest.getIntegers().multiplication(four2, minusOne);
+		one = getIntegers().getOne();
+		minusOne = getIntegers().getInverseElement(getIntegers().getOne());
+		zero = getIntegers().getNeutralElement();
+		two = getIntegers().addition(one, one);
+		four1 = getIntegers().multiplication(two, two);
+		four2 = getIntegers().addition(two, two);
+		minusFour = getIntegers().multiplication(four2, minusOne);
 	}
 
 	public Group getGroup() {
@@ -57,8 +56,7 @@ public class GroupGeneratorTest extends GenericTest {
 	 */
 	@Test
 	public void completionTest() {
-		final DiscreetGroup rationals = Generator.getInstance().getGroupGenerator()
-				.completeToGroup(Generator.getInstance().getGroupGenerator().getNaturals());
+		final DiscreetGroup rationals = getGroupGenerator().completeToGroup(getGroupGenerator().getNaturals());
 		final Element neutralElement = rationals.getNeutralElement();
 		for (double i = 1; i < 10; i++) {
 			final Element tmp = rationals.get(i);
@@ -77,37 +75,34 @@ public class GroupGeneratorTest extends GenericTest {
 	@Test
 	public void integersTest() {
 		final boolean addSameAsMult = four1.equals(four2);
-		final boolean sumIsZero = GenericTest.getIntegers().addition(four1, minusFour).equals(zero);
+		final boolean sumIsZero = getIntegers().addition(four1, minusFour).equals(zero);
 		Assert.assertTrue(addSameAsMult);
 		Assert.assertTrue(sumIsZero);
 	}
 
 	@Test
 	public void fieldsTest() {
-		final FieldElement newZero = GenericTest.getRationals().getNeutralElement();
-		final FieldElement newOne = (FieldElement) GenericTest.getRationals().getMuliplicativeMonoid()
-				.getNeutralElement();
-		final FieldElement newTwo = (FieldElement) GenericTest.getRationals().addition(newOne, newOne);
-		final FieldElement half = (FieldElement) GenericTest.getRationals().getMuliplicativeMonoid()
-				.getInverseElement(newTwo);
-		FieldElement var = (FieldElement) GenericTest.getRationals().multiplication(newOne, newOne);
+		final FieldElement newZero = getRationals().getNeutralElement();
+		final FieldElement newOne = (FieldElement) getRationals().getMuliplicativeMonoid().getNeutralElement();
+		final FieldElement newTwo = (FieldElement) getRationals().addition(newOne, newOne);
+		final FieldElement half = (FieldElement) getRationals().getMuliplicativeMonoid().getInverseElement(newTwo);
+		FieldElement var = (FieldElement) getRationals().multiplication(newOne, newOne);
 		FieldElement tmp;
 		FieldElement debugTmp;
 		for (int i = 1; i < 5; i++) {
-			debugTmp = (FieldElement) GenericTest.getRationals().multiplication(var, half);
-			tmp = GenericTest.getRationals().getInverseElement(debugTmp);
-			var = (FieldElement) GenericTest.getRationals().addition(var, tmp);
+			debugTmp = (FieldElement) getRationals().multiplication(var, half);
+			tmp = getRationals().getInverseElement(debugTmp);
+			var = (FieldElement) getRationals().addition(var, tmp);
 			logger.debug(i + ": " + var.toString());
 		}
-		logger.debug("Inverse of new zero is "
-				+ GenericTest.getRationals().getMuliplicativeMonoid().getInverseElement(newZero));
+		logger.debug("Inverse of new zero is " + getRationals().getMuliplicativeMonoid().getInverseElement(newZero));
 		logger.debug("for i==5 we get an error. to be fixed, e.g. by replacing (224,208) by (16,0) somewhere...");
 	}
 
 	@Test
 	public void testBinField() {
 
-		final PrimeField field = Generator.getInstance().getGroupGenerator().getConstructedBinaries();
+		final PrimeField field = getGroupGenerator().getConstructedBinaries();
 		logger.debug(field);
 
 		final Element zero = field.getZero();

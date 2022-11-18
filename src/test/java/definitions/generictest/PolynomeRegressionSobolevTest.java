@@ -5,8 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import definitions.prototypes.GenericPolynomeRegressionTest;
-import definitions.structures.euclidean.Generator;
+import definitions.prototypes.impl.GenericPolynomeRegressionTest;
 import definitions.structures.euclidean.functionspaces.EuclideanFunctionSpace;
 import exceptions.DevisionByZeroException;
 import exceptions.ExtendingFailedException;
@@ -24,8 +23,8 @@ public class PolynomeRegressionSobolevTest extends GenericPolynomeRegressionTest
 	public void setUp() throws IOException, DevisionByZeroException, ExtendingFailedException {
 		eps = 1e1;
 		super.setUp();
-		setSpace((EuclideanFunctionSpace) Generator.getInstance().getSpaceGenerator()
-				.getPolynomialSobolevSpace(realLine, getDegree(), right, getSobolevDegree()));
+		setSpace((EuclideanFunctionSpace) getSpaceGenerator().getPolynomialSobolevSpace(getRealLine(), getDegree(),
+				right, getSobolevDegree()));
 	}
 
 	@Override

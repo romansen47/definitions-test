@@ -3,8 +3,7 @@ package definitions.generictest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
-import definitions.structures.abstr.algebra.fields.PrimeField;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 
@@ -15,13 +14,13 @@ import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 public class MultiDimensionalSpaceOverBinaryFieldTest extends GenericTest {
 
 	final int dim = 5;
-	PrimeField f = GenericTest.getGenerator().getGroupGenerator().getBinaries();
 
 	@Test
 	public void testShowBase() {
 
 		boolean ans = true;
-		final EuclideanSpace modulo2Space = GenericTest.getSpaceGenerator().getFiniteDimensionalVectorSpace(f, dim);
+		final EuclideanSpace modulo2Space = getSpaceGenerator()
+				.getFiniteDimensionalVectorSpace(getGroupGenerator().getBinaries(), dim);
 		modulo2Space.show();
 
 		for (int i = 1; i < dim; i++) {
@@ -36,13 +35,12 @@ public class MultiDimensionalSpaceOverBinaryFieldTest extends GenericTest {
 		Assert.assertTrue(ans);
 	}
 
-	PrimeField cf = GenericTest.getGenerator().getGroupGenerator().getConstructedBinaries();
-
 	@Test
 	public void testWithConstructedBinaries() {
 
 		boolean ans = true;
-		final EuclideanSpace modulo2Space = GenericTest.getSpaceGenerator().getFiniteDimensionalVectorSpace(cf, dim);
+		final EuclideanSpace modulo2Space = getSpaceGenerator()
+				.getFiniteDimensionalVectorSpace(getGenerator().getGroupGenerator().getConstructedBinaries(), dim);
 		modulo2Space.show();
 
 		for (int i = 1; i < dim; i++) {

@@ -1,4 +1,4 @@
-package definitions.prototypes;
+package definitions.prototypes.impl;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import definitions.structures.abstr.algebra.fields.Field;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectors.specialfunctions.ExponentialFunction;
 import definitions.structures.euclidean.vectors.specialfunctions.Sine;
 import exceptions.DevisionByZeroException;
@@ -40,8 +39,6 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 	private Function sin;
 	private Function exp;
 
-	protected static final Field realLine = Generator.getInstance().getFieldGenerator().getRealLine();
-
 	@Before
 	@Override
 	public void setUp() throws IOException, DevisionByZeroException, ExtendingFailedException {
@@ -49,7 +46,7 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 
 			@Override
 			public Field getField() {
-				return realLine;
+				return getRealLine();
 			}
 		};
 
@@ -57,7 +54,7 @@ public abstract class GenericPolynomeRegressionTest extends GenericSpaceTest {
 
 			@Override
 			public Field getField() {
-				return realLine;
+				return getRealLine();
 			}
 		};
 

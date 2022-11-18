@@ -5,8 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import definitions.prototypes.GenericPolynomeRegressionTest;
-import definitions.structures.euclidean.Generator;
+import definitions.prototypes.impl.GenericPolynomeRegressionTest;
 import exceptions.DevisionByZeroException;
 import exceptions.ExtendingFailedException;
 
@@ -23,8 +22,7 @@ public class PolynomeRegressionTest extends GenericPolynomeRegressionTest {
 	public void setUp() throws IOException, DevisionByZeroException, ExtendingFailedException {
 
 		super.setUp();
-		setSpace(Generator.getInstance().getSpaceGenerator().getPolynomialFunctionSpace(realLine, getDegree(), right,
-				true));
+		setSpace(getSpaceGenerator().getPolynomialFunctionSpace(getRealLine(), getDegree(), right, true));
 	}
 
 	@Override

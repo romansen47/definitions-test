@@ -7,13 +7,12 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.scalars.Scalar;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Real;
 import definitions.structures.abstr.algebra.rings.SemiDomain;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 import definitions.structures.impl.Naturals;
 import definitions.structures.impl.Naturals.NaturalNumber;
@@ -22,7 +21,7 @@ public class PrimesTest extends GenericTest {
 
 	public static final Logger logger = LogManager.getLogger(PrimesTest.class);
 
-	SemiDomain integers = (Naturals) Generator.getInstance().getGroupGenerator().getNaturals();
+	SemiDomain integers = (Naturals) getNaturals();
 
 	private final int maxValue = 100000;
 
@@ -69,7 +68,7 @@ public class PrimesTest extends GenericTest {
 					ans += 1;
 				}
 			}
-			return Generator.getInstance().getFieldGenerator().getRealLine().get(ans);
+			return getRealLine().get(ans);
 		}
 
 	};

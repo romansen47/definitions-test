@@ -19,7 +19,6 @@
 			<groupId>general</groupId>
 			<artifactId>definitions</artifactId> 
 			<version>1.0.0-SNAPSHOT</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.codehaus.mojo</groupId>

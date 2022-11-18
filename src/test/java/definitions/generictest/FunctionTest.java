@@ -4,12 +4,11 @@
 package definitions.generictest;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.vectorspaces.vectors.Function;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.functionspaces.EuclideanFunctionSpace;
 import definitions.structures.euclidean.functionspaces.impl.FiniteDimensionalSobolevSpace;
 import definitions.structures.euclidean.mappings.impl.DerivativeOperator;
@@ -34,13 +33,12 @@ public class FunctionTest extends GenericTest {
 	/**
 	 * @throws java.lang.Exception an exception if sth went wrong
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 
-		final ISpaceGenerator spGen = Generator.getInstance().getSpaceGenerator();
-		FunctionTest.trigSpace = spGen.getTrigonometricSobolevSpace(
-				Generator.getInstance().getFieldGenerator().getRealLine(), FunctionTest.trigonometricDegree,
-				FunctionTest.sobolevDegree);
+		final ISpaceGenerator spGen = getSpaceGenerator();
+		FunctionTest.trigSpace = spGen.getTrigonometricSobolevSpace(getFieldGenerator().getRealLine(),
+				FunctionTest.trigonometricDegree, FunctionTest.sobolevDegree);
 
 		FunctionTest.sine = (Function) FunctionTest.trigSpace.genericBaseToList().get(1);
 		FunctionTest.cosine = (Function) FunctionTest.trigSpace.genericBaseToList()

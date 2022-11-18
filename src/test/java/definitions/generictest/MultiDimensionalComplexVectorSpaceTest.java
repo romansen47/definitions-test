@@ -8,9 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 
 /**
@@ -25,8 +24,7 @@ public class MultiDimensionalComplexVectorSpaceTest extends GenericTest {
 	public void testNorm() {
 		final int dim = 10;
 
-		final EuclideanSpace complexSpace = (EuclideanSpace) Generator.getInstance().getSpaceGenerator()
-				.getFiniteDimensionalComplexSpace(dim);
+		final EuclideanSpace complexSpace = (EuclideanSpace) getSpaceGenerator().getFiniteDimensionalComplexSpace(dim);
 
 		Vector vec = complexSpace.nullVec();
 		for (int i = 0; i < dim; i++) {

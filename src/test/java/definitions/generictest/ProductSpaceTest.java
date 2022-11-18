@@ -8,11 +8,10 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.Field;
 import definitions.structures.abstr.algebra.groups.IGroupGenerator;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectors.FiniteVector;
 import definitions.structures.euclidean.vectorspaces.EuclideanSpace;
 import definitions.structures.euclidean.vectorspaces.ISpaceGenerator;
@@ -27,9 +26,9 @@ public class ProductSpaceTest extends GenericTest {
 
 	public static final Logger logger = LogManager.getLogger(ProductSpaceTest.class);
 
-	ISpaceGenerator spaceGenerator = Generator.getInstance().getSpaceGenerator();
-	IGroupGenerator groupGenerator = Generator.getInstance().getGroupGenerator();
-	Field complexNumbers = GenericTest.getComplexPlane();
+	ISpaceGenerator spaceGenerator = getSpaceGenerator();
+	IGroupGenerator groupGenerator = getGroupGenerator();
+	Field complexNumbers = getComplexPlane();
 
 	private final EuclideanSpace leftSpace = spaceGenerator.getFiniteDimensionalVectorSpace(2);
 	private final EuclideanSpace rightSpace = spaceGenerator.getFiniteDimensionalVectorSpace(3);

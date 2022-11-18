@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import definitions.prototypes.GenericTest;
+import definitions.prototypes.impl.GenericTest;
 import definitions.structures.abstr.algebra.fields.impl.ComplexPlane;
 import definitions.structures.abstr.algebra.fields.impl.RealLine;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Complex;
@@ -19,7 +19,6 @@ import definitions.structures.abstr.mappings.VectorSpaceSelfMapping;
 import definitions.structures.abstr.vectorspaces.VectorSpace;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
 import definitions.structures.dynamicsystems.DynamicSystem;
-import definitions.structures.euclidean.Generator;
 
 public class DiscreetDynamicSystemTest extends GenericTest {
 
@@ -33,7 +32,7 @@ public class DiscreetDynamicSystemTest extends GenericTest {
 
 	@Before
 	public void beforeTest() {
-		timeSpace = GenericTest.getIntegers();
+		timeSpace = getIntegers();
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class DiscreetDynamicSystemTest extends GenericTest {
 
 	@Test
 	public void testExponentialLaw() {
-		phaseSpace = Generator.getInstance().getFieldGenerator().getRealLine();
+		phaseSpace = getFieldGenerator().getRealLine();
 		startVector = ((RealLine) phaseSpace).get(1.);
 
 		dinamicSystem = new DynamicSystem() {
@@ -118,7 +117,7 @@ public class DiscreetDynamicSystemTest extends GenericTest {
 	 */
 	@Test
 	public void testFibbonacciLaw() {
-		phaseSpace = ComplexPlane.getInstance();
+		phaseSpace = getFieldGenerator().getComplexPlane();
 		startVector = ((ComplexPlane) phaseSpace).get(1, 1);
 
 		dinamicSystem = new DynamicSystem() {
@@ -135,7 +134,7 @@ public class DiscreetDynamicSystemTest extends GenericTest {
 					@Override
 					public Element get(Element vec) {
 						return ((ComplexPlane) getPhaseSpace()).get(((Real) ((Complex) vec).getImag()).getDoubleValue(),
-								Generator.getInstance().getFieldGenerator().getRealLine()
+								getFieldGenerator().getRealLine()
 										.addition(((Complex) vec).getReal(), ((Complex) vec).getImag())
 										.getDoubleValue());
 					}
