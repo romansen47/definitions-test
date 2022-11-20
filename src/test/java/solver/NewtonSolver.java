@@ -1,16 +1,23 @@
 package solver;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import definitions.structures.abstr.algebra.fields.impl.FieldGenerator;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Real;
 import definitions.structures.abstr.algebra.semigroups.Element;
-import definitions.structures.euclidean.Generator;
 import definitions.structures.euclidean.vectors.impl.GenericFunction;
 import solver.impl.Solver;
 
+@Component
 public class NewtonSolver implements Solver {
 
 	final double initialData;
 	final double eps;
 	final GenericFunction function;
+
+	@Autowired(required = true)
+	private FieldGenerator fieldGenerator;
 
 	public NewtonSolver(final Real init, final Real eps, final GenericFunction fun) {
 		initialData = init.doubleValue();
@@ -19,13 +26,9 @@ public class NewtonSolver implements Solver {
 	}
 
 	private Element doStep(final double lastVal) throws Throwable {
-		double ans = lastVal
-				- (((Real) function.value(Generator.getInstance().getFieldGenerator().getRealLine().get(lastVal)))
-						.getDoubleValue()
-						/ ((Real) function.getDerivative()
-								.value(Generator.getInstance().getFieldGenerator().getRealLine().get(lastVal)))
-										.getDoubleValue());
-		return Generator.getInstance().getFieldGenerator().getRealLine().get(ans);
+		double ans = lastVal - (((Real) function.value(fieldGenerator.getRealLine().get(lastVal))).getDoubleValue()
+				/ ((Real) function.getDerivative().value(fieldGenerator.getRealLine().get(lastVal))).getDoubleValue());
+		return fieldGenerator.getRealLine().get(ans);
 	}
 
 	@Override
@@ -36,6 +39,6 @@ public class NewtonSolver implements Solver {
 			lastVal = newVal;
 			newVal = ((Real) doStep(lastVal)).doubleValue();
 		}
-		return Generator.getInstance().getFieldGenerator().getRealLine().get(newVal);
+		return fieldGenerator.getRealLine().get(newVal);
 	}
 }

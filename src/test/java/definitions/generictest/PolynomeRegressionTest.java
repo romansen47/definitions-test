@@ -20,7 +20,6 @@ public class PolynomeRegressionTest extends GenericPolynomeRegressionTest {
 
 	@Override
 	public void setUp() throws IOException, DevisionByZeroException, ExtendingFailedException {
-
 		super.setUp();
 		setSpace(getSpaceGenerator().getPolynomialFunctionSpace(getRealLine(), getDegree(), right, true));
 	}

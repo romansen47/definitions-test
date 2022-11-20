@@ -10,6 +10,7 @@ import definitions.structures.abstr.algebra.fields.scalars.Scalar;
 import definitions.structures.abstr.algebra.fields.scalars.impl.Complex;
 import definitions.structures.abstr.mappings.VectorSpaceHomomorphism;
 import definitions.structures.abstr.vectorspaces.vectors.Vector;
+import exceptions.DevisionByZeroException;
 
 public class ComplexPlaneMockitoTest extends GenericTest {
 
@@ -23,7 +24,7 @@ public class ComplexPlaneMockitoTest extends GenericTest {
 
 	@Test
 	public void complexTest() {
-		Assert.assertEquals(complexPlane.complex(), complexPlane.getZero());
+		Assert.assertEquals(complexPlane.complex(), complexPlane.get(0, 0));
 	}
 
 	@Test
@@ -43,7 +44,7 @@ public class ComplexPlaneMockitoTest extends GenericTest {
 	}
 
 	@Test
-	public void getMultiplicativeInverseElementTest() {
+	public void getMultiplicativeInverseElementTest() throws DevisionByZeroException {
 		Complex y = complexPlane.getMultiplicativeInverseElement(complexPlane.get(2, 0));
 		Assert.assertEquals(y.getReal(), realLine.get(0.5));
 		Assert.assertEquals(y.getImag(), realLine.getZero());
