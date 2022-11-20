@@ -1,56 +1,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>definitions</groupId>
-  <artifactId>definitions-test</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>definitions-test</name> 
-  
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>definitions</groupId>
+	<artifactId>definitions-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>definitions-test</name>
+
 	<properties>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<aspectj.version>1.9.9.1</aspectj.version>
-		<spring.version>5.3.21</spring.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
- 		<dl4j.version>1.0.0-M2</dl4j.version>
+		<spring.version>5.3.24</spring.version>
+		<definitions.sources.dir>../definitions/target/classes</definitions.sources.dir>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
 	</properties>
- 
-	<dependencies>   
-		<dependency>
-	        <groupId>org.springframework</groupId>
-	        <artifactId>spring-tx</artifactId>
-			<version> ${spring.version}</version>
-	    </dependency>
+
+	<dependencies>
 		<dependency>
 			<groupId>general</groupId>
-			<artifactId>definitions</artifactId> 
-			<version>1.0.0-SNAPSHOT</version> 
+			<artifactId>definitions</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.codehaus.mojo</groupId>
-		    <artifactId>aspectj-maven-plugin</artifactId>
-		    <version>1.14.0</version>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>aspectj-maven-plugin</artifactId>
+			<version>1.14.0</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
-		</dependency>
-		<dependency>
-		  <groupId>org.deeplearning4j</groupId>
-		  <artifactId>deeplearning4j-core</artifactId>
-		  <version>${dl4j.version}</version>
-		</dependency>
-		<dependency>
-		  <groupId>org.nd4j</groupId>
-		  <artifactId>nd4j-native-platform</artifactId>
-		  <version>${dl4j.version}</version>
-		</dependency> 
-		<dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-tx</artifactId>
-         <version>${spring.version}</version>
-     	</dependency>
+		</dependency>  
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -65,7 +45,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version> ${spring.version}</version>
-		</dependency> 
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
@@ -87,25 +67,25 @@
 			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.aspectj</groupId>
-		    <artifactId>aspectjweaver</artifactId>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
-		    <scope>runtime</scope>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
-			<version>${aspectj.version}</version> 
+			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
-		</dependency> 
+		</dependency>
 		<dependency>
-		    <groupId>javax.cache</groupId>
-		    <artifactId>cache-api</artifactId>
-		    <version>1.1.1</version>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -135,38 +115,38 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<plugins> 
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M6</version>
-				<configuration>  
+				<configuration>
 					<argLine>
 						-javaagent:"${settings.localRepository}"/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-					</argLine> 
+					</argLine>
 				</configuration>
 			</plugin>
 			<plugin>
-		        <artifactId>maven-resources-plugin</artifactId>
-		        <version>3.0.2</version>
-		        <executions>
-		          <execution>
-		            <id>copy-resources</id>
-		            <phase>compile</phase>
-		            <goals>
-		              <goal>copy-resources</goal> 
-		            </goals>
-		            <configuration>
-		              <outputDirectory>target/classes/</outputDirectory>
-		              <resources>          
-		                <resource>
-		                  <directory>../definitions/target/classes</directory>
-		                </resource>
-		              </resources>              
-		            </configuration>            
-		          </execution>
-		        </executions>
-		    </plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/classes/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${definitions.sources.dir}</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>

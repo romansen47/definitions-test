@@ -5,13 +5,9 @@
 		<!-- -showWeaveInfo -debug -verbose -->
 		<include within="org.springframework..*" /> 
 		<include within="definitions..*" />
-		<exclude within="plotter.Plotter" />
-		<include within="customaspects..*" />
-		<exclude within="org.apache..*" />
-		<exclude within="org.junit.Test" /> 
+		<exclude within="plotter.Plotter" /> 
 	</weaver>
 	<aspects>
-		<aspect name="definitions.cache.CachingAspect" /> 
 		<aspect name="definitions.performance.PerformanceTestAspect" />  
 	</aspects>
 </aspectj>
