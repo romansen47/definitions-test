@@ -1,11 +1,10 @@
 <!DOCTYPE aspectj PUBLIC
         "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
-	<weaver options="-Xset:weaveJavaxPackages=true -verbose ">
+	<weaver options="-Xset:weaveJavaxPackages=true -showWeaveInfo -verbose ">
 		<!-- -showWeaveInfo -debug -verbose -->
 		<include within="org.springframework..*" /> 
-		<include within="definitions..*" />
-		<exclude within="plotter.Plotter" /> 
+		<include within="definitions..*" /> 
 	</weaver>
 	<aspects>
 		<aspect name="definitions.performance.PerformanceTestAspect" />  
